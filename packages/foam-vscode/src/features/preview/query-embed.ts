@@ -11,7 +11,7 @@ export const foamQuery = (md: markdownit, workspace: FoamWorkspace) => {
     regex: /(\?\?\?query\s[\s\S]*\s\?\?\?)/, // /(\?\?\?[0-9]*[\p{L}/_-][\p{L}\p{N}/_-]*\s*)/u,
     replace: (query: string) => {
       try {
-        Logger.error(`Query: ${query}`);
+        Logger.info(`Query: ${query}`);
         const resource = workspace.find(query);
         if (isNone(resource)) {
           let content = getFoamQuery(query);
