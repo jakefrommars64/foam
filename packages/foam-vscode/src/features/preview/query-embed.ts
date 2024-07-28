@@ -14,14 +14,15 @@ export const foamQuery = (md: markdownit, workspace: FoamWorkspace) => {
   return md.use(markdownItRegex, {
     name: 'foam-query',
     regex: /(\?\?\?query\s[\s\S]*\s\?\?\?)/, // /(\?\?\?[0-9]*[\p{L}/_-][\p{L}\p{N}/_-]*\s*)/u,
+    // regex: /(\{\{\{sql query\s[\s\S]*\s\}\}\})/,
     replace: (query: string) => {
       try {
         Logger.info(`Query: ${query}`);
         const resource = workspace.find(query);
         if (isNone(resource)) {
           let content = getFoamQuery(query);
-          let html = md.render(content);
-          return html;
+          // content = md.render(content);
+          return content;
         }
       } catch (e) {
         Logger.error(
@@ -35,6 +36,6 @@ export const foamQuery = (md: markdownit, workspace: FoamWorkspace) => {
 };
 
 const getFoamQuery = (content: string) =>
-  `<pre><code><span class="foam-query">${content}</span></code></pre>`;
+  `<span class="foam-query">${content}</span>`;
 
 export default foamQuery;

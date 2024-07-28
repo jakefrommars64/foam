@@ -9,7 +9,8 @@
 }
 
 .foam-tag {
-  color: var(--vscode-editorLineNumber-foreground);
+  /* color: var(--vscode-editorLineNumber-foreground); */
+  color: #f00;
 }
 
 .foam-cyclic-link-warning {
@@ -39,4 +40,5 @@
 .foam-query {
   font-family: 'Sansation';
   color: #f00;
+  background-color: aqua;
 }
