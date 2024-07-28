@@ -6,6 +6,11 @@ import { Logger } from '../../core/utils/log';
 import { isNone } from '../../core/utils';
 
 export const foamQuery = (md: markdownit, workspace: FoamWorkspace) => {
+  workspace.list().forEach(element => {
+    if (element.type === 'note' && element.properties.type === 'project') {
+      Logger.info(`${Object.getOwnPropertyNames(element.properties)}`);
+    }
+  });
   return md.use(markdownItRegex, {
     name: 'foam-query',
     regex: /(\?\?\?query\s[\s\S]*\s\?\?\?)/, // /(\?\?\?[0-9]*[\p{L}/_-][\p{L}\p{N}/_-]*\s*)/u,
